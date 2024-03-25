@@ -1,5 +1,7 @@
 ---
+import Image from 'astro/components/Image.astro';
 import { getPokemonByName } from '../services/pokedex';
+import { lazy } from 'astro/zod';
 
 
 interface Props {
@@ -19,6 +21,6 @@ const pokemonInfo = await getPokemonByName(pokemon);
   text-1xl hover:text-orange-500 flex flex-col
   justify-center text-center items-center"
 >
-  <img src={pokemonInfo.sprites.front_default} alt={pokemonInfo.name} loading={"lazy"}/>
+  <Image src={pokemonInfo.sprites.front_default} alt={pokemonInfo.name} inferSize loading="lazy"/>
   {pokemon}
 </a>
