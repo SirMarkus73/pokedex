@@ -1,0 +1,35 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Search Pokemons">
+  <form id="search-form"
+    class="flex justify-center flex-row items-center gap-5 max-md:flex-col max-md:gap-2"
+  >
+    <label for="pokemon-search" class="text-center my-7 text-2xl">
+      Pokemon Name
+      <input type="text" id="pokemon-search" class="my-7" />
+    </label>
+    <button
+      id="search-button"
+      class="border-orange-500 border-2 border-solid w-fit"
+      >Search</button
+    >
+  </form>
+</Layout>
+
+<script>
+  let button = document.getElementById("search-button") as HTMLButtonElement;
+  let input = document.getElementById("pokemon-search") as HTMLInputElement;
+
+  button.addEventListener("click", () => {
+    fetch(`/pokemons/${input.value}`).then((response) => {
+      if (response.ok) {
+        window.location.href = `/pokemons/${input.value}`;
+      } else {
+        alert("Pokemon not found");
+        document.location.reload();
+      }
+    });
+  });
+</script>
