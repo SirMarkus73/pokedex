@@ -1,0 +1,13 @@
+---
+import GeneralLink from "../components/GeneralLink.astro";
+import PokemonsGrid from "../components/PokemonsGrid.astro";
+import Layout from "../layouts/Layout.astro";
+let offset = 0;
+---
+
+<Layout title="Pagina Principal Pokedex">
+  <PokemonsGrid offset={offset} quantity={10} />
+  <nav class="flex justify-center py-5">
+    <GeneralLink href="/all-pokemons/0">See All Pokemons</GeneralLink>
+  </nav>
+</Layout>

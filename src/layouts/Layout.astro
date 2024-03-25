@@ -1,0 +1,45 @@
+---
+interface Props {
+  title: string;
+}
+
+import Header from "../components/Header.astro";
+import ViewTransitions from "astro/components/ViewTransitions.astro";
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <ViewTransitions />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <slot />
+    </main>
+  </body>
+</html>
+
+<style is:global>
+  @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap");
+
+  html {
+    color-scheme: dark light;
+  }
+
+  body {
+    font-family: "JetBrains Mono", monospace;
+  }
+
+  main {
+	padding: 2rem;
+  }
+</style>

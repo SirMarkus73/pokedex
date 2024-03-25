@@ -1,0 +1,24 @@
+---
+import { getPokemonByName } from '../services/pokedex';
+
+
+interface Props {
+  pokemon: string;
+}
+
+const { pokemon } = Astro.props;
+
+const pokemonInfo = await getPokemonByName(pokemon);
+
+---
+
+<a
+  href={`/pokemons/${pokemon}`}
+  class="hover:bg-slate-500 transition
+  ease-in hover:translate-y-2 hover:scale-110
+  text-1xl hover:text-orange-500 flex flex-col
+  justify-center text-center items-center"
+>
+  <img src={pokemonInfo.sprites.front_default} alt={pokemonInfo.name} loading={"lazy"}/>
+  {pokemon}
+</a>

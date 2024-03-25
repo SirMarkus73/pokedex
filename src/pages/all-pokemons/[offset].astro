@@ -1,0 +1,54 @@
+---
+import GeneralLink from "../../components/GeneralLink.astro";
+import PokemonsGrid from "../../components/PokemonsGrid.astro";
+import Layout from "../../layouts/Layout.astro";
+
+const { offset } = Astro.params;
+let offsetInt = 0;
+
+if (offset) {
+  if (typeof offset === "string") {
+    offsetInt = parseInt(offset);  
+  } else {
+    offsetInt = offset;
+  }
+  
+}
+
+if (offsetInt < 0) {
+  offsetInt = 0;
+}
+
+function changeOffset(direction: "prev" | "next") {
+  if (direction === "prev" && offsetInt > 15) {
+    return offsetInt - 15;
+  }
+  if (direction === "next") {
+    return offsetInt + 15;
+  }
+  return 0;
+}
+
+export async function getStaticPaths() {
+  let staticPaths = [];
+
+  for (let i = 0; i < 1140; i += 15) { // Despues de el offset 1140 el programa no funciona.
+    staticPaths.push({params: { offset: i }})
+  }
+
+  return staticPaths;
+}
+
+---
+
+<Layout title={"Pokemons"}>
+  <PokemonsGrid offset={offsetInt} quantity={15}/>
+  <nav class="flex justify-center gap-24 mt-10">
+    <GeneralLink href={`/all-pokemons/${changeOffset("prev")}`}
+      >Previous Pokemons</GeneralLink
+    >
+    <GeneralLink href={`/all-pokemons/${changeOffset("next")}`}
+      >Next Pokemons</GeneralLink
+    >
+  </nav>
+</Layout>

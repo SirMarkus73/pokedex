@@ -1,0 +1,18 @@
+---
+import PokemonCard from "../components/PokemonCard.astro";
+import { getPokemons } from "../services/pokedex";
+
+interface Props {
+  offset: number;
+  quantity?: number;
+}
+
+const { offset, quantity } = Astro.props;
+let pokemons = await getPokemons(offset, quantity);
+---
+
+<section
+  class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 justify-center text-center gap-32 w-full"
+>
+  {pokemons.map((pokemon) => <PokemonCard pokemon={pokemon.name} />)}
+</section>
