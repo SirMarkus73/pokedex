@@ -2,10 +2,10 @@
 import HeaderLink from "./HeaderLink.astro";
 ---
 
-<header class="flex flex-col justify-center text-center py-5">
-  <h1 class="text-5xl">Pokedex</h1>
+<header class="flex flex-row justify-between text-center py-5 px-10 max-md:flex-col max-md:justify-center">
+  <a href="/"><h1 class="text-5xl">Pokedex</h1></a>
   <nav
-    class="flex flex-row text-center justify-between mx-auto min-w-40 gap-10 py-2"
+    class="flex flex-row gap-10 justify-center"
   >
     <HeaderLink href="/">Home</HeaderLink>
     <HeaderLink href="/all-pokemons/0">All Pokemons</HeaderLink>
